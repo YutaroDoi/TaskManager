@@ -1,0 +1,19 @@
+<%= form_for(@task,url: yield(:request_path)) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :label %>
+  <%= f.select :label, [:house, :study, :play], class: 'form-control' %>
+
+  <%= f.label :priority %>
+  <%= f.select :priority, [1,2,3], prompt:"選択してください", class: 'form-control' %>
+
+  <%= f.label :expire %>
+  <%= f.date_select :expire, class: 'form-control' %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, class: 'form-control' %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
