@@ -11,7 +11,7 @@
                 <th scope="col">終了期限</th>
                 <th scope="col">作成日時</th>
                 <th scope="col">更新日時</th>
-                <th scope="col">アクション</th>
+                <th scope="col" colspan = "3">アクション</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +25,9 @@
                 <td><%= task.expire %></td>
                 <td><%= task.created_at %></td>
                 <td><%= task.updated_at %></td>
+                <td><%= link_to "詳細",task %></td>
+                <td><%= link_to "編集", "#" %></td>
+                <td><%= link_to "削除", "#" %></td>
             </tr>
         <% end %>
         </tbody>

@@ -1,0 +1,29 @@
+<h1>タスク詳細</h1>
+<div class="container">
+     <div class="table-responsive panel">
+        <table class="table">
+            <tbody>
+                    <tr>
+                        <td class="text-success"> タスク名</td>
+                        <td><%= @task.name %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">ラベル</td>
+                        <td><%= @task.label %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">優先順位</td>
+                        <td><%= @task.priority %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">終了期限</td>
+                        <td><%= @task.expire %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">タスク説明</td>
+                        <td><%= @task.description %></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
