@@ -35,8 +35,8 @@ Things you may want to cover:
 | label | VARCHAR(32) | タスクの種類を表すラベル |
 | user_id | BIGINT | タスク作成者のユーザID |
 | priority | TINYINT | タスクの優先順位。数字が小さいほど優先順位が高い。UNSIGNED |
-| created | DATETIME | 作成日時 |
-| modified | DATETIME | 修正日時 |
+| created_at | DATETIME | 作成日時 |
+| modified_at | DATETIME | 修正日時 |
 
 ```sql
 # users.sql
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `label` VARCHAR(32),
   `user_id` BIGINT NOT NULL,
   `priority` TINYINT UNSIGNED,
-  `created` DATETIME NOT NULL,
-  `modified` DATETIME NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `modified_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
 | id | BIGINT | ユーザに対して一意の識別番号。データベースの自動採番(AUTO INCREMENT)を使用。UNSIGNED |
 | name | VARCHAR(64) | ユーザーID |
 | password | VARCHAR(64) | パスワード |
-| role | VARCHAR(16) | ユーザー権限。adminが管理者、userが一般。 |
+| admin | TINYINT | ユーザー権限。trueが管理者、falseが一般。 |
 
 ```sql
 # users.sql
@@ -70,9 +70,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` BIGINT NOT NULL AUTO_INCREMENT UNSIGEND,
   `name` VARCHAR(64) NOT NULL,
   `password` VARCHAR(64) NOT NULL,
-  `role` VARCHAR(16) NOT NULL,
-  `created` DATETIME NOT NULL,
-  `modified` DATETIME NOT NULL,
+  `admin` TINYINT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `modified_at` DATETIME NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `modified_at` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
