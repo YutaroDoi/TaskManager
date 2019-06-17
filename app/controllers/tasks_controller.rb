@@ -36,6 +36,12 @@ class TasksController < ApplicationController
       end
     end
 
+    def destroy
+      Task.find(params[:id]).destroy
+      flash[:success] = "タスクを削除しました！"
+      redirect_to root_path
+    end
+
     private
       def task_params
         params.require(:task).permit(:name, :label, :priority, :expire, :description)
