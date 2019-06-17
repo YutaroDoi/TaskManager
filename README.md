@@ -29,7 +29,7 @@ Things you may want to cover:
 |:--|:--|:--|
 | id | BIGINT | タスクに対して一意の識別番号。データベースの自動採番(AUTO INCREMENT)を使用。UNSIGNED 。|
 | name | VARCHAR(255) | タスク名 |
-| task_description | TEXT | タスク説明 |
+| description | TEXT | タスク説明 |
 | expire | DATETIME | タスクの終了期限 |
 | status | VARCHAR(16) | タスクの実施状況 |
 | label | VARCHAR(32) | タスクの種類を表すラベル |
@@ -43,7 +43,7 @@ Things you may want to cover:
 CREATE TABLE IF NOT EXISTS `tasks` (
   `id` BIGINT NOT NULL AUTO_INCREMENT UNSIGNED,
   `name` VARCHAR(255) NOT NULL,
-  `task_description` TEXT,
+  `description` TEXT,
   `expire` DATETIME,
   `status` VARCHAR(16) NOT NULL,
   `label` VARCHAR(32),
