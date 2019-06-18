@@ -1,7 +1,9 @@
 <% provide(:title, 'All tasks') %>
 <h1>タスク一覧</h1>
 <div class="container">
-  <%= link_to "作成", new_task_path %>
+  <%= link_to new_task_path, class: 'btn btn-default' do %>
+  <i class="fas fa-plus-circle fa-2x" style="color:cadetblue"></i>
+   <% end %>
     <table class="table">
         <thead>
             <tr class="table-info">
@@ -27,9 +29,18 @@
                 <td><%= task.expire %></td>
                 <td><%= task.created_at %></td>
                 <td><%= task.updated_at %></td>
-                <td><%= link_to "詳細", task %></td>
-                <td><%= link_to "編集", edit_task_path(task) %></td>
-                <td><%= link_to "削除", task, method: :delete ,data: {confirm: "本当に削除しますか？"} %></td>
+                <td><%= link_to task do %>
+                <i class="fas fa-search-plus fa-2x" style="color:cadetblue"></i>
+                <% end %>
+                </td>
+                <td><%= link_to edit_task_path(task) do %>
+                <i class="fas fa-edit fa-2x" style="color:cadetblue"></i>
+                <% end %>
+                </td>
+                <td><%= link_to task, method: :delete ,data: {confirm: "本当に削除しますか？"} do %>
+                <i class="fas fa-trash-alt fa-2x" style="color:cadetblue"></i>
+                <% end %>
+                </td>
             </tr>
         <% end %>
         </tbody>
