@@ -30,6 +30,21 @@ module App
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Use Japanese as a default language
+    config.i18n.default_locale = :ja 
+
+    # Load path to use locale files
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+
+    # White list about languages correspansive
+    config.i18n.available_locales = %i(ja en)
+
+    # Show Error when a language other than the above list is signated
+    config.i18n.enforce_available_locales = true
+
+    # Set time zone
+    config.time_zone = 'Tokyo'
+
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: true,

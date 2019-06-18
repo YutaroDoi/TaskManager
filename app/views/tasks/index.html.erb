@@ -26,9 +26,9 @@
                 <td><%= task.status %></td>
                 <td><%= task.label %></td>
                 <td><%= task.priority %></td>
-                <td><%= task.expire %></td>
-                <td><%= task.created_at %></td>
-                <td><%= task.updated_at %></td>
+                <td><%= l task.expire %></td>
+                <td><%= l task.created_at %></td>
+                <td><%= l task.updated_at %></td>
                 <td><%= link_to task do %>
                 <i class="fas fa-search-plus fa-2x" style="color:cadetblue"></i>
                 <% end %>
