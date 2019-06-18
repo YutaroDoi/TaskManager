@@ -22,6 +22,9 @@ gem 'bootstrap', '~> 4.3.1'
 # Use jquery to use bootstrap4
 gem 'jquery-rails'
 
+# Use font-awesome
+gem 'font-awesome-sass', '~> 5.8.1'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
