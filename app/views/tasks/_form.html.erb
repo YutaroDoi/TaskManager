@@ -1,19 +1,22 @@
 <%= form_for(@task,url: yield(:request_path)) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   
-  <%= f.label :name %>
+  <%= f.label t :status %>
+  <%= f.select :status, Task.statuses.map { |k, v| [t(k), k] }, class: 'form-control' %>
+
+  <%= f.label t :name %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :label %>
+  <%= f.label t :label %>
   <%= f.select :label, [:house, :study, :play], class: 'form-control' %>
 
-  <%= f.label :priority %>
+  <%= f.label t :priority %>
   <%= f.select :priority, [1,2,3], prompt:"選択してください", class: 'form-control' %>
 
-  <%= f.label :expire %>
+  <%= f.label t :expire %>
   <%= f.date_select :expire, class: 'form-control' %>
 
-  <%= f.label :description %>
+  <%= f.label t :description %>
   <%= f.text_field :description, class: 'form-control' %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
