@@ -20,6 +20,10 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+  1. git checkout master
+  2. git merge <your_latest_develop_branch>
+  3. git push heroku master
+  4. (optional) heroku run rails db:migration
 
 * 
 
