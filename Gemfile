@@ -28,6 +28,9 @@ gem 'font-awesome-sass', '~> 5.8.1'
 # Use i18n
 gem 'rails-i18n', '~> 5.1'
 
+# Use search
+gem 'ransack'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

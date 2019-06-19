@@ -1,0 +1,9 @@
+<%= search_form_for(@q, url: tasks_path, html: { method: :get, class: 'form-horizontal', role: 'form' }) do |f| %>
+
+  <%= f.label :name_cont %>
+  <%= f.text_field :name_cont, class: 'form-control' %>
+  <%= f.label :status_cont %>
+  <%= f.select :status_eq, [0,1,2], class: 'form-control' %>
+
+  <%= f.submit %>
+<% end %>
