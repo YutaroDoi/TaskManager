@@ -237,20 +237,3 @@ span.picture {
     border: 0;
   }
 }
-
-/* sortable */
-
-th .current {
-  padding-right: 12px;
-}
-.asc::after{ 
-   content: "\f0d8";
-   font-family: "Font Awesome 5 Free";
-   color: black;
-}
-
-.desc::after{ 
-  content: "\f0dd";
-  font-family: "Font Awesome 5 Free";
-  color: black;
-}
