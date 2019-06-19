@@ -7,5 +7,8 @@ build:
     app: Dockerfile
   config:
     RAILS_ENV: production
+    BASIC_AUTH_USER: buysell
+    BASIC_AUTH_PASSWORD: tech
+
 run:
   web: /bin/sh -c "rm -f /var/src/app/tmp/pids/server.pid;bundle exec rails s -b 0.0.0.0"
