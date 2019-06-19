@@ -63,7 +63,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: white;
+  color: black;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -136,15 +136,6 @@ aside {
       margin-top: 0px;
     }
   }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
 }
 
 /* forms */
@@ -245,4 +236,24 @@ span.picture {
   input {
     border: 0;
   }
+}
+
+/* sortable */
+
+th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.asc::after{ 
+   content: "\f0d8";
+   font-family: "Font Awesome 5 Free";
+   color: black;
+}
+
+
+.desc::after{ 
+  content: "\f0dd";
+  font-family: "Font Awesome 5 Free";
+  color: black;
 }
