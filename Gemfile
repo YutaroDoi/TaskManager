@@ -31,6 +31,12 @@ gem 'rails-i18n', '~> 5.1'
 # Use search
 gem 'ransack'
 
+# Use pagination
+gem 'kaminari'
+
+# bootstrap for kaminari view
+gem 'bootstrap4-kaminari-views'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
