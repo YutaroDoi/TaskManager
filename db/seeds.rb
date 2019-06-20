@@ -1,6 +1,8 @@
-Task.create!(name:  "Cleaning",
-    description: "clean my room",
-    expire:              Time.zone.now,
-    status: "未実施",
-    label: "家事",
-    priority: 2)
+100.times do |number|
+    Task.create!(name:  "Cleaning#{number}",
+        description: "clean my room",
+        expire:              Time.zone.now,
+        status: :todo,
+        label: "家事",
+        priority: 2)
+end
