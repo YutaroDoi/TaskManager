@@ -4,8 +4,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
 
-      t.references :task, foreign_key: true
-
       t.timestamps
     end
   end
