@@ -3,4 +3,5 @@ class Task < ApplicationRecord
     validates :status, presence: true
 
     enum status: [:todo, :doing, :done]
+    enum priority: [:low, :medium, :high]
 end

@@ -4,5 +4,5 @@
         expire:              Time.zone.now,
         status: :todo,
         label: "家事",
-        priority: 2)
+        priority: :low)
 end
