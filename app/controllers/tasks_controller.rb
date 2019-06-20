@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
     def index
       @q = Task.ransack(params[:q])
-      @tasks = @q.result
+      @tasks = @q.result.page(params[:page])
     end
 
     def show
