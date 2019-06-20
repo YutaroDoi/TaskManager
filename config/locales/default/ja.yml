@@ -12,6 +12,7 @@ ja:
   todo: 未着手
   doing: 着手中
   done: 完了
+  unspecified: 指定なし
   activerecord:
     errors:
       messages:
