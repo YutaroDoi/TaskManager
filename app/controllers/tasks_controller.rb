@@ -1,5 +1,7 @@
 class TasksController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :route_by_logged_in
+
     def index
       @q = Task.ransack(params[:q])
       @tasks = @q.result.page(params[:page])
