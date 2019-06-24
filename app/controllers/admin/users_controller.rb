@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
 
         def index
             @q = User.ransack(params[:q])
+            # Todo: 仮想カラムを使ってtasks.countでもソートできるようにする 
             @users = @q.result.preload(:tasks).page(params[:page])
         end
 
