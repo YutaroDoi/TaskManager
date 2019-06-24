@@ -1,0 +1,26 @@
+<% provide(:title, 'Show Users') %>
+<h1>ユーザー詳細</h1>
+<div class="container">
+     <div class="table-responsive panel">
+        <table class="table">
+            <tbody>
+                    <tr>
+                        <td class="text-success"> ユーザー名</td>
+                        <td><%= @user.name %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">メールアドレス</td>
+                        <td><%= @user.email %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">作成日時</td>
+                        <td><%= @user.created_at %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-success">更新日時</td>
+                        <td><%= @user.updated_at %></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
