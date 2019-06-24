@@ -8,17 +8,17 @@ class TasksController < ApplicationController
     end
 
     def show
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     def new
-      @task = Task.new
+      @task = current_user.tasks.new
     end
 
     def create
-      @task = Task.new(task_params)
+      @task = current_user.tasks.build(task_params)
       if @task.save
-        redirect_to root_path
+        redirect_to tasks_path
         flash[:success] = "タスクを作成しました！"
       else
         render 'new'
@@ -26,11 +26,11 @@ class TasksController < ApplicationController
     end
 
     def edit
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
     end
 
     def update
-      @task = Task.find(params[:id])
+      @task = current_user.tasks.find(params[:id])
       if @task.update_attributes(task_params)
         flash[:success] = "タスクを編集しました！"
         redirect_to root_path
@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     end
 
     def destroy
-      Task.find(params[:id]).destroy
+      current_user.tasks.find(params[:id]).destroy
       flash[:success] = "タスクを削除しました！"
       redirect_to root_path
     end
