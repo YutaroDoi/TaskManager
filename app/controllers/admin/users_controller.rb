@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
 
         def index
             @q = User.ransack(params[:q])
-            @users = @q.result.includes(:tasks).references(:tasks).page(params[:page])
+            @users = @q.result.preload(:tasks).page(params[:page])
         end
 
         def show
