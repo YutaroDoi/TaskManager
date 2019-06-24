@@ -24,3 +24,36 @@
         </table>
     </div>
 </div>
+<% provide(:title, 'All tasks') %>
+<h2><%= @user.name %>のタスク一覧</h2>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr class="table-info">
+            <%# sortable内部でparamsのvalueと比較を行うためsymbolではなく文字列で渡す %>
+                <th scope="col"><%= sort_link(@q, :id, t('id')) %></th>
+                <th scope="col"><%= sort_link(@q, :name, t('name')) %></th>
+                <th scope="col"><%= sort_link(@q, :status, t('status')) %></th>
+                <th scope="col"><%= sort_link(@q, :label, t('label')) %></th>
+                <th scope="col"><%= sort_link(@q, :priority, t('priority')) %></th>
+                <th scope="col"><%= sort_link(@q, :expire, t('expire')) %></th>
+                <th scope="col"><%= sort_link(@q, :created_at, t('created_at')) %></th>
+                <th scope="col"><%= sort_link(@q, :updated_at, t('updated_at')) %></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @tasks.each do |task| %>
+            <tr>
+                <th scope="row"><%= task.id %></th>
+                <td><%= task.name %></td>
+                <td><%= t task.status %></td>
+                <td><%= task.label %></td>
+                <td><%= t task.priority %></td>
+                <td><%= l task.expire %></td>
+                <td><%= l task.created_at %></td>
+                <td><%= l task.updated_at %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
