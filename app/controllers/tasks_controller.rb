@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :route_by_logged_in
 
     def index
-      @q = Task.ransack(params[:q])
+      @q = current_user.tasks.ransack(params[:q])
       @tasks = @q.result.page(params[:page])
     end
 
