@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/login', to:'sessions#create'
   delete '/logout', to:'sessions#destroy'
   resources :tasks
+  resources :labels, only: [:create, :destroy]
 
   namespace :admin do
     resources :users

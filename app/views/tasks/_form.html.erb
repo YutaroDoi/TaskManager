@@ -7,9 +7,6 @@
   <%= f.label t :name %>
   <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label t :label %>
-  <%= f.select :label, [:house, :study, :play], class: 'form-control' %>
-
   <%= f.label t :priority %>
   <%= f.select :priority, [1,2,3], prompt:"選択してください", class: 'form-control' %>
 
@@ -24,6 +21,13 @@
     <%= b.label { b.check_box + b.text } %>
   <% end %>
 
-
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
+
+  <%= form_for(@label,url: labels_path) do |f| %>
+
+    <%= f.label t :label %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <% end %>
