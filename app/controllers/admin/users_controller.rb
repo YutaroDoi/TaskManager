@@ -9,7 +9,7 @@ class Admin::UsersController < ApplicationController
         def show
             @user = User.find(params[:id])
             @q = @user.tasks.ransack(params[:q])
-            @tasks = @q.result
+            @tasks = @q.result.preload(:labels, :task_labels)
         end
     
         def new

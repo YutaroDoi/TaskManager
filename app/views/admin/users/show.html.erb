@@ -47,7 +47,11 @@
                 <th scope="row"><%= task.id %></th>
                 <td><%= task.name %></td>
                 <td><%= t task.status %></td>
-                <td><%= task.label %></td>
+                <td>
+                <% task.labels.each do |label| %> 
+                <%= label.name %>
+                <% end %>
+                </td>
                 <td><%= t task.priority %></td>
                 <td><%= l task.expire %></td>
                 <td><%= l task.created_at %></td>
