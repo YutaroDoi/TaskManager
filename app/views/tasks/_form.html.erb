@@ -19,5 +19,11 @@
   <%= f.label t :description %>
   <%= f.text_field :description, class: 'form-control' %>
 
+  <%= f.label :label_id %>
+  <%= f.collection_check_boxes :label_ids, Label.all, :id, :name, include_hidden: false do |b| %>
+    <%= b.label { b.check_box + b.text } %>
+  <% end %>
+
+
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
