@@ -22,6 +22,7 @@ class TasksController < ApplicationController
         redirect_to tasks_path
         flash[:success] = "タスクを作成しました！"
       else
+        @label = Label.new
         render 'new'
       end
     end
@@ -36,6 +37,7 @@ class TasksController < ApplicationController
         flash[:success] = "タスクを編集しました！"
         redirect_to tasks_path
       else
+        @label = Label.new
         render 'edit'
       end
     end
