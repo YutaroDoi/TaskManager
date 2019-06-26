@@ -1,5 +1,8 @@
 class Admin::UsersController < ApplicationController
 
+    before_action :route_by_logged_in
+    before_action :admin_user
+
         def index
             @q = User.ransack(params[:q])
             # Todo: 仮想カラムを使ってtasks.countでもソートできるようにする 
@@ -49,6 +52,10 @@ class Admin::UsersController < ApplicationController
         private
           def user_params
             params.require(:user).permit(:name, :email, :password, :password_confirmation)
+          end
+
+          def admin_user
+            redirect_to root_url unless current_user.admin?
           end
     
     end
