@@ -11,6 +11,7 @@
             <%# sortable内部でparamsのvalueと比較を行うためsymbolではなく文字列で渡す %>
                 <th scope="col"><%= sort_link(@q, :id, t('id')) %></th>
                 <th scope="col"><%= sort_link(@q, :name, t('name')) %></th>
+                <th scope="col"><%= sort_link(@q, :admin, t('admin')) %></th>
                 <th scope="col"><%= sort_link(@q, :email, t('email')) %></th>
                 <th scope="col"><%= sort_link(@q, :tasks, t('tasks')) %></th>
                 <th scope="col"><%= sort_link(@q, :created_at, t('created_at')) %></th>
@@ -23,6 +24,7 @@
             <tr>
                 <th scope="row"><%= user.id %></th>
                 <td><%= user.name %></td>
+                <td><%= t user.admin %></td>
                 <td><%= t user.email %></td> 
                 <td><%= t user.tasks.pluck(:id).count %></td>  
                 <td><%= l user.created_at %></td>
