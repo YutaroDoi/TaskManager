@@ -51,7 +51,8 @@ class Admin::UsersController < ApplicationController
     
         private
           def user_params
-            params.require(:user).permit(:name, :email, :password, :password_confirmation)
+            params[:user][:admin] = ActiveRecord::Type::Boolean.new.cast(params[:user][:admin])
+            params.require(:user).permit(:name, :admin, :email, :password, :password_confirmation)
           end
 
           def admin_user
