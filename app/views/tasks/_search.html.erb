@@ -4,7 +4,7 @@
   <%= f.text_field :name_cont, class: 'form-control' %>
 
   <%= f.label :status_eq %>
-  <%= f.select :status_eq, [[t(:unspecified), nil]] | Task.statuses.map { |k, v| [t(k), v] }, class: 'form-control' %>
+  <%= f.select :status_eq, Task.statuses.map { |k, v| [t(k), v] }, {include_blank: true}, class: 'form-control' %>
 
   <%= f.label :task_labels_id_eq%>
   <%= f.select :task_labels_label_id_eq, Label.order(:name).map{|m| [m.name, m.id]}, {include_blank: true}, {class: 'form-control'} %>
