@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   before_save :downcase_email
+  before_destroy :at_least_one_admin_user_exists?
 
   validates :name, presence: true, length: { maximum: 50 }
 
@@ -17,5 +18,11 @@ class User < ApplicationRecord
   private
     def downcase_email
       self.email.downcase!
+    end
+
+    def at_least_one_admin_user_exists?
+      if User.where("admin = true").count < 2
+        throw :abort
+      end
     end
 end
