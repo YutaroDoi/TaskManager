@@ -16,18 +16,23 @@
   <%= f.label t :description %>
   <%= f.text_field :description, class: 'form-control' %>
 
-  <%= f.label :label_id %>
+  <%= f.label :label_id, "ラベル" %>
+  <div class="container">
   <%= f.collection_check_boxes :label_ids, Label.all, :id, :name, include_hidden: false do |b| %>
-    <%= b.label { b.check_box + b.text } %>
-  <% end %>
-
+    <div class="row">
+      <%= b.check_box(class: "col-1") %>
+      <%= b.label(class: "col-4 align-top")%>
+    </div>   
+    <% end %>
+  </div>
+ 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
 
   <%= form_for(@label,url: labels_path) do |f| %>
-
+   
     <%= f.label t :label %>
     <%= f.text_field :name, class: 'form-control' %>
-
+  
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
   <% end %>
