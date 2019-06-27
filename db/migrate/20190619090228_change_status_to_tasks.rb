@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeStatusToTasks < ActiveRecord::Migration[5.2]
   def up
     change_column :tasks, :status, :string, default: nil
@@ -8,7 +10,7 @@ class ChangeStatusToTasks < ActiveRecord::Migration[5.2]
   end
 
   def down
-    change_column :tasks, :status, :string, default: "未着手"
+    change_column :tasks, :status, :string, default: '未着手'
     change_column :tasks, :status, :string, null: false
     change_column :tasks, :status, :string
     change_column :tasks, :status, :integer, default: nil

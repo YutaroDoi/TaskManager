@@ -1,0 +1,19 @@
+inherit_from: .rubocop_todo.yml
+Metrics/AbcSize:
+  Max: 30
+# 自動生成されるものはチェック対象から除外する
+AllCops:
+  Exclude:
+    - "vendor/**/*" # rubocop config/default.yml
+    - 'db/**'
+    - 'config/**'
+    - 'script/**'
+    - 'bin/**'
+  DisplayCopNames: true
+Documentation:
+  Enabled: false
+# 日本語のコメントを許可する
+Style/AsciiComments:
+  Enabled: false
+Metrics/LineLength:
+  Max: 130
