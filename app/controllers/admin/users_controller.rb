@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class Admin < ApplicationController
-  class UsersController
+class Admin
+  class UsersController < ApplicationController
     before_action :route_by_logged_in
     before_action :admin_user
 
