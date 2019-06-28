@@ -189,6 +189,8 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.2)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -270,6 +272,7 @@ DEPENDENCIES
   rails-i18n (~> 5.1)
   ransack
   rspec-rails
+  rspec_junit_formatter
   rubocop
   sass-rails (~> 5.0.7)
   spring

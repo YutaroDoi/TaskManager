@@ -1,30 +1,30 @@
-version: 2 # use CircleCI 2.0
+version: 2 # CircleCIはversion2を指定
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    parallelism: 3 # run three instances of this job in parallel
     docker: # run the steps with Docker
-      - image: circleci/ruby:2.6.2 # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/ruby:2.6.2-node # nodejs付きの公式rubyイメージを使う
         environment: # environment variables for primary container
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
-          PGHOST: 127.0.0.1
-          PGUSER: circleci-demo-ruby
+          PG_HOST: 127.0.0.1
+          PG_USER: circleci-demo-ruby
+          PG_PASSWORD: pass
           RAILS_ENV: test
       - image: circleci/postgres:9.6-alpine # database image
         environment: # environment variables for database
           POSTGRES_USER: circleci-demo-ruby
-          POSTGRES_DB: rails_blog
-          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: rails_test
+          POSTGRES_PASSWORD: pass
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
 
-      # Which version of bundler?
+      # bundlerのバージョンを表示
       - run:
           name: Which bundler
           command: bundle -v
 
-      # Restore bundle cache
+      # bundleのキャッシュがあれば使用
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
       - restore_cache:
           keys:
@@ -35,44 +35,60 @@ jobs: # a collection of steps
           name: Bundle Install
           command: bundle check --path vendor/bundle || bundle install --deployment
 
-      # Store bundle cache for Ruby dependencies
+      # bundleをキャッシュとして保存
       - save_cache:
           key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
-      # Only necessary if app uses webpacker or yarn in some other way
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
+      # 現段階ではjsを使わないため保留
+      # # Only necessary if app uses webpacker or yarn in some other way
+      # - restore_cache:
+      #     keys:
+      #       - rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #       - rails-demo-yarn-
 
+      # - run:
+      #     name: Yarn Install
+      #     command: yarn install --cache-folder ~/.cache/yarn
+
+      # # Store yarn / webpacker cache
+      # - save_cache:
+      #     key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+      
+      #rubocopを走らせる
       - run:
-          name: Yarn Install
-          command: yarn install --cache-folder ~/.cache/yarn
-
-      # Store yarn / webpacker cache
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
-
+          name: Rubocop
+          command: bundle exec rubocop
+       
+      #DBコンテナのセットアップを待つ
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
+      #database.ymlをCI用にすり替え
+      - run: 
+          name: Change database.yml to database.ci.yml
+          command: mv config/database.ci.yml config/database.yml
+      
+      #DBを作成
+      - run: bin/rails db:create
+
+      #schemaの反映
       - run:
           name: Database setup
           command: bin/rails db:schema:load --trace
 
-      - run:
-          name: Run rspec in parallel
-          command: |
+      #RSpecの実行
+      - type: shell
+        command: |
             bundle exec rspec --profile 10 \
-                              --format RspecJunitFormatter \
-                              --out test_results/rspec.xml \
-                              --format progress \
-                              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+                            --format RspecJunitFormatter \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
 
       # Save test results for timing analysis
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
